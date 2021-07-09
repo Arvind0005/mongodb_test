@@ -1,10 +1,11 @@
+import 'dart:convert';
 import 'package:dart_mongo/dart_mongo.dart' as dart_mongo;
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'dart:io';
 
 main(List<String> arguments) async {
-  int port = 8085;
+  int port = 500;
   var server = await HttpServer.bind('localhost', port);
   Db db = Db('mongodb://localhost:27017/test');
   await db.open();
@@ -14,7 +15,7 @@ main(List<String> arguments) async {
 
   DbCollection coll = db.collection('people');
   var people = await coll.find().toList();
-  print(people);
+  //print(people);
   // await db.close();
   // await server.close();
   server.listen((HttpRequest request) async {
@@ -35,7 +36,22 @@ main(List<String> arguments) async {
         await request.response.close();
         break;
       case '/people':
-        request.response.write(await coll.find().toList());
+        // request.response.write(await coll.find().toList());
+        if (request.method == 'GET') {
+          request.response.write(await coll.find().toList());
+          await request.response.close();
+        } else if (request.method == 'POST') {
+          var content =
+              await request.cast<List<int>>().transform(Utf8Decoder()).join();
+          request.response.write(content);
+          var data = json.decode(content);
+          print(data['name']);
+          await coll.save(data);
+          // print(coll.findOne(content));
+          await request.response.close();
+        } else if (request.method == 'PUT') {
+        } else if (request.method == 'DELETE') {
+        } else if (request.method == 'PATCH') {}
         await request.response.close();
         break;
       default:
@@ -45,7 +61,7 @@ main(List<String> arguments) async {
         await request.response.close();
     }
     print("xxxxxxxxxxxxxxxxxxxxxx");
-    await request.response.close();
+    //  await request.response.close();
     // await db.close();
     // await server.close();
 

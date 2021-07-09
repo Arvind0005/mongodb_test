@@ -62,7 +62,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625394519562</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="SETTING UP OF REST API">
+      <created>1625598966573</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1625598966573</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -109,13 +116,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="print datas from mongodb" />
-    <option name="LAST_COMMIT_MESSAGE" value="print datas from mongodb" />
+    <MESSAGE value="SETTING UP OF REST API" />
+    <option name="LAST_COMMIT_MESSAGE" value="SETTING UP OF REST API" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="270" y="0" key="CommitChangelistDialog2" timestamp="1625394518047">
+    <state x="270" y="0" key="CommitChangelistDialog2" timestamp="1625598965119">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="270" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1625394518047" />
+    <state x="270" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1625598965119" />
     <state x="421" y="95" key="FileChooserDialogImpl" timestamp="1625333048413">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -132,10 +140,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="398" y="45" key="VCS.ChangeListViewerDialog/0.0.1280.680@0.0.1280.680" timestamp="1625341344515" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1625426116881">
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1625598975019">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1625426116881" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1625598975019" />
     <state x="409" y="235" key="git4idea.ui.GitResetDialog" timestamp="1625341375729">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -144,5 +152,9 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="403" y="130" key="git4idea.ui.GitUnstashDialog/0.0.1280.680@0.0.1280.680" timestamp="1625341419454" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1625857255050">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1625857255050" />
   </component>
 </project>
