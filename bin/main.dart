@@ -50,8 +50,30 @@ main(List<String> arguments) async {
           // print(coll.findOne(content));
           await request.response.close();
         } else if (request.method == 'PUT') {
+          var id = int.parse(request.uri.queryParameters['id']);
+          var content =
+              await request.cast<List<int>>().transform(Utf8Decoder()).join();
+          var document = jsonDecode(content);
+          var iteamtochange = await coll.findOne(where.eq('id', id));
+          if (iteamtochange == null) {
+            await coll.save(document);
+          } else {
+            await coll.update(iteamtochange, document);
+          }
         } else if (request.method == 'DELETE') {
-        } else if (request.method == 'PATCH') {}
+          var id = int.parse(request.uri.queryParameters['id']);
+          var iteamtoremove = await coll.findOne(where.eq('id', id));
+          await coll.remove(iteamtoremove);
+        } else if (request.method == 'PATCH') {
+          var id = int.parse(request.uri.queryParameters['id']);
+          var content =
+              await request.cast<List<int>>().transform(Utf8Decoder()).join();
+          var document = json.decode(content);
+          var iteamtopatch = await coll.findOne(where.eq('id', id));
+          await coll.update(iteamtopatch, {
+            r'$set': document,
+          });
+        }
         await request.response.close();
         break;
       default:
