@@ -4,18 +4,18 @@ import 'package:http_server/http_server.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 class PeopleController {
-  PeopleController(this._reqBody, Db db)
-      : _req = _reqBody.request,
-        _store = db.collection('people') {
+  HttpRequestBody requestBody;
+  final HttpRequest request;
+  final DbCollection dbCollection;
+
+  PeopleController(this.requestBody, Db db)
+      : request = requestBody.request,
+        dbCollection = db.collection('people') {
     handle();
   }
 
-  HttpRequestBody _reqBody;
-  final HttpRequest _req;
-  final DbCollection _store;
-
   handle() async {
-    switch (_req.method) {
+    switch (request.method) {
       case 'GET':
         await handleGet();
         break;
@@ -32,43 +32,40 @@ class PeopleController {
         await handlePatch();
         break;
       default:
-        _req.response.statusCode = 405;
+        request.response.statusCode = 405;
     }
-
-    await _req.response.close();
+    await request.response.close();
   }
 
   handleGet() async {
-    _req.response.write(await _store.find().toList());
+    request.response.write(await dbCollection.find().toList());
   }
 
   handlePost() async {
-    _req.response.write(await _store.save(_reqBody.body));
+    request.response.write(dbCollection.save(requestBody.body));
   }
 
   handlePut() async {
-    var id = int.parse(_req.uri.queryParameters['id']);
-    var itemToPut = await _store.findOne(where.eq('id', id));
-
-    if (itemToPut == null) {
-      await _store.save(_reqBody.body);
+    var id = int.parse(request.uri.queryParameters['id']);
+    var iteamtoput = await dbCollection.findOne(where.eq('id', id));
+    if (iteamtoput == null) {
+      await dbCollection.save(requestBody.body);
     } else {
-      await _store.update(itemToPut, _reqBody.body);
+      await dbCollection.update(iteamtoput, requestBody.body);
     }
   }
 
   handleDelete() async {
-    var id = int.parse(_req.uri.queryParameters['id']);
-    var itemToDelete = await _store.findOne(where.eq('id', id));
-    if (itemToDelete != null) {
-      _req.response.write(await _store.remove(itemToDelete));
+    var id = int.parse(request.uri.queryParameters['id']);
+    var iteamtodelete = await dbCollection.findOne(where.eq('id', id));
+    if (iteamtodelete != null) {
+      await dbCollection.remove(iteamtodelete);
     }
   }
 
   handlePatch() async {
-    var id = int.parse(_req.uri.queryParameters['id']);
-    var itemToPatch = await _store.findOne(where.eq('id', id));
-    _req.response
-        .write(await _store.update(itemToPatch, {r'$set': _reqBody.body}));
+    var id = int.parse(request.uri.queryParameters['id']);
+    var iteamtopatch = await dbCollection.findOne(where.eq('id', id));
+    await dbCollection.update(iteamtopatch, {r'$set': requestBody.body});
   }
 }

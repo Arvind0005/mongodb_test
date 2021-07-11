@@ -3,6 +3,7 @@ import 'package:dart_mongo/dart_mongo.dart' as dart_mongo;
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'dart:io';
+import 'package:http_server/http_server.dart';
 
 main(List<String> arguments) async {
   int port = 500;
@@ -18,7 +19,9 @@ main(List<String> arguments) async {
   //print(people);
   // await db.close();
   // await server.close();
-  server.listen((HttpRequest request) async {
+  server
+      .transform(dart_mongo.HttpBodyHandler())
+      .listen((HttpRequestBody reqbody) async {
     // if (request.uri.path == '/') {
     //   request.response.write('hello world');
     //   //await request.response.close();
@@ -30,57 +33,58 @@ main(List<String> arguments) async {
     //   // await db.close();
     //   // await server.close();
     // }
-    switch (request.uri.path) {
+    switch (reqbody.request.uri.path) {
       case '/':
-        request.response.write('hello world');
-        await request.response.close();
+        reqbody.request.response.write('hello world');
+        await reqbody.request.response.close();
         break;
       case '/people':
-        // request.response.write(await coll.find().toList());
-        if (request.method == 'GET') {
-          request.response.write(await coll.find().toList());
-          await request.response.close();
-        } else if (request.method == 'POST') {
-          var content =
-              await request.cast<List<int>>().transform(Utf8Decoder()).join();
-          request.response.write(content);
-          var data = json.decode(content);
-          print(data['name']);
-          await coll.save(data);
-          // print(coll.findOne(content));
-          await request.response.close();
-        } else if (request.method == 'PUT') {
-          var id = int.parse(request.uri.queryParameters['id']);
-          var content =
-              await request.cast<List<int>>().transform(Utf8Decoder()).join();
-          var document = jsonDecode(content);
-          var iteamtochange = await coll.findOne(where.eq('id', id));
-          if (iteamtochange == null) {
-            await coll.save(document);
-          } else {
-            await coll.update(iteamtochange, document);
-          }
-        } else if (request.method == 'DELETE') {
-          var id = int.parse(request.uri.queryParameters['id']);
-          var iteamtoremove = await coll.findOne(where.eq('id', id));
-          await coll.remove(iteamtoremove);
-        } else if (request.method == 'PATCH') {
-          var id = int.parse(request.uri.queryParameters['id']);
-          var content =
-              await request.cast<List<int>>().transform(Utf8Decoder()).join();
-          var document = json.decode(content);
-          var iteamtopatch = await coll.findOne(where.eq('id', id));
-          await coll.update(iteamtopatch, {
-            r'$set': document,
-          });
-        }
-        await request.response.close();
+        dart_mongo.PeopleController(reqbody, db);
+        // if (reqbody.request.method == 'GET') {
+        //   reqbody.request.response.write(await coll.find().toList());
+        //   await reqbody.request.response.close();
+        // }
+        // else if (request.method == 'POST') {
+        //   var content =
+        //       await request.cast<List<int>>().transform(Utf8Decoder()).join();
+        //   request.response.write(content);
+        //   var data = json.decode(content);
+        //   print(data['name']);
+        //   await coll.save(data);
+        //   // print(coll.findOne(content));
+        //   await request.response.close();
+        // } else if (request.method == 'PUT') {
+        //   var id = int.parse(request.uri.queryParameters['id']);
+        //   var content =
+        //       await request.cast<List<int>>().transform(Utf8Decoder()).join();
+        //   var document = jsonDecode(content);
+        //   var iteamtochange = await coll.findOne(where.eq('id', id));
+        //   if (iteamtochange == null) {
+        //     await coll.save(document);
+        //   } else {
+        //     await coll.update(iteamtochange, document);
+        //   }
+        // } else if (request.method == 'DELETE') {
+        //   var id = int.parse(request.uri.queryParameters['id']);
+        //   var iteamtoremove = await coll.findOne(where.eq('id', id));
+        //   await coll.remove(iteamtoremove);
+        // } else if (request.method == 'PATCH') {
+        //   var id = int.parse(request.uri.queryParameters['id']);
+        //   var content =
+        //       await request.cast<List<int>>().transform(Utf8Decoder()).join();
+        //   var document = json.decode(content);
+        //   var iteamtopatch = await coll.findOne(where.eq('id', id));
+        //   await coll.update(iteamtopatch, {
+        //     r'$set': document,
+        //   });
+        // }
+        // await reqbody.request.response.close();
         break;
       default:
-        request.response
+        reqbody.request.response
           ..statusCode = HttpStatus.notFound
           ..write('Not Found');
-        await request.response.close();
+        await reqbody.request.response.close();
     }
     print("xxxxxxxxxxxxxxxxxxxxxx");
     //  await request.response.close();

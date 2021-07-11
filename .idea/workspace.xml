@@ -9,8 +9,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67fd5e69-3f24-453b-93c1-51d1cb781d44" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/people_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/people_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +82,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625861320037</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="making changes in database regarding with request">
+      <created>1625945414892</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1625945414893</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -124,13 +137,14 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="print datas from mongodb" />
     <MESSAGE value="SETTING UP OF REST API" />
-    <option name="LAST_COMMIT_MESSAGE" value="SETTING UP OF REST API" />
+    <MESSAGE value="making changes in database regarding with request" />
+    <option name="LAST_COMMIT_MESSAGE" value="making changes in database regarding with request" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="270" y="0" key="CommitChangelistDialog2" timestamp="1625861317931">
+    <state x="111" y="0" key="CommitChangelistDialog2" timestamp="1625945413926">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="270" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1625861317931" />
+    <state x="111" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1625945413926" />
     <state x="421" y="95" key="FileChooserDialogImpl" timestamp="1625333048413">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -147,10 +161,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="398" y="45" key="VCS.ChangeListViewerDialog/0.0.1280.680@0.0.1280.680" timestamp="1625341344515" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1625861330624">
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1625945426650">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1625861330624" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1625945426650" />
     <state x="409" y="235" key="git4idea.ui.GitResetDialog" timestamp="1625341375729">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

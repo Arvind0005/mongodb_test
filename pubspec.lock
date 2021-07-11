@@ -133,7 +133,7 @@ packages:
       name: http_server
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.8+3"
+    version: "1.0.0"
   io:
     dependency: transitive
     description:
@@ -175,7 +175,7 @@ packages:
       name: mime
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.7"
+    version: "1.0.0"
   mongo_dart:
     dependency: "direct main"
     description:
